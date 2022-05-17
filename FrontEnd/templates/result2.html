@@ -1,0 +1,21 @@
+{% extends "layout.html"%}
+{% block content %}
+<div>
+    <h3 class="display-4">Resultados</h3>
+</div>
+{% set numero = namespace(value=1) %}
+{% for element in result %} 
+<div style="width:250px;display:inline-block;">
+    {% set dist = element[0]%}
+    {% set image_name = element[1].split('/')[-1]%}
+    {% set ruta = element[1].split('/')[-2] %}
+    <img class="" src="{{ url_for('show_image', filename=image_name,directorio=ruta) }}" >
+    <div class="">
+        <p>#{{numero.value}} -- {{ruta}}</p>
+        <p>Semejanza: {{dist}}</p>
+    </div>
+</div>
+{% set numero.value=numero.value+1%}
+{% endfor %}
+
+{% endblock %}

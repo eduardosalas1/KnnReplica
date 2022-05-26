@@ -2,7 +2,6 @@ import os
 import face_recognition as fr
 import numpy as np
 import heapq 
-from rtree import index
 from timeit import default_timer as timer
 def KNN_Seq(k,query,n,path):  
 

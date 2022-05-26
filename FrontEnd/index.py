@@ -6,7 +6,7 @@ import face_recognition as fr
 from lectura import KNN_Seq
 import json
 
-dirFotos="../BackEnd/Project3/Data/Collection/lfw/"
+dirFotos="../BackEnd/Data/Collection/lfw/"
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -28,8 +28,8 @@ def home():
 def result():
     # Check if a valid image file was uploaded
 
-    path = '/home/elguille/Guille/ProjectPPF/KnnReplica/BackEnd/Project3/Data/Test_1'
-    datapath = '/home/elguille/Guille/ProjectPPF/KnnReplica/BackEnd/Project3/Data/Collection/lfw/'
+    path = '/home/elguille/Guille/ProjectPPF/KnnReplica/BackEnd/Data/Test_1'
+    datapath = '/home/elguille/Guille/ProjectPPF/KnnReplica/BackEnd/Data/Collection/lfw/'
     
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -44,9 +44,8 @@ def result():
             
                 img = fr.load_image_file(path + '/' + file.filename)
                 query =  fr.face_encodings(img)[0]
-
                 data = KNN_Seq(int(kvalue),query,100, datapath)
-                              
+                
                 return render_template("result2.html",result = data)
     # NO imagen
     return render_template('home.html')
